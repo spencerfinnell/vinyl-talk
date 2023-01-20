@@ -17,8 +17,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [HomeController::class, "home"]);
+Route::get('/', [UserController::class, "showCorrectHomepage"]);
 Route::get('/about', [AboutController::class, "about"]);
 Route::get('/single-post', [SinglePostController::class, "post"]);
 
 Route::post('/register', [UserController::class, "register"]);
+Route::post('/login', [UserController::class, "login"]);
