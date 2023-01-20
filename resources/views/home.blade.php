@@ -7,7 +7,8 @@
             <p class="lead text-muted">You are not alone. Vinyl records have seen a resurence in popularity in recent years. The warm rich sounds of vinyl are once again filling millions of homes around the world. Share your love vinyl with others, discuss releases both new and old. Shar your love of vinyls with others!</p>
         </div>
         <div class="col-lg-5 pl-lg-5 pb-3 py-lg-5">
-            <form action="#" method="POST" id="registration-form">
+            <form action="/register" method="POST" id="registration-form">
+                @csrf
                 <div class="form-group">
                     <label for="username-register" class="text-muted mb-1"><small>Username</small></label>
                     <input name="username" id="username-register" class="form-control" type="text" placeholder="Pick a username" autocomplete="off" />
