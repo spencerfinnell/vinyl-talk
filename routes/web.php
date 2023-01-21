@@ -24,7 +24,8 @@ Route::post('/logout', [UserController::class, "logout"])->middleware('auth');
 Route::get('/create-post', [PostController::class, "showCreateForm"])->middleware('auth');
 Route::post('/create-post', [PostController::class, "storeNewPost"])->middleware('auth');
 Route::get('/post/{post}', [PostController::class, "showSinglePost"]);
-Route::delete('/post/{post}', [PostController::class, "delete"]);
-
+Route::delete('/post/{post}', [PostController::class, "delete"])->middleware('can:delete,post');
+Route::get('/post/{post}/edit', [PostController::class, "showEditForm"])->middleware('can:update,post');
+Route::put('/post/{post}', [PostController::class, "actuallyUpdate"])->middleware('can:update,post');
 
 Route::get('/profile/{user:username}', [UserController::class, 'profile']);
