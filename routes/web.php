@@ -29,3 +29,7 @@ Route::get('/post/{post}/edit', [PostController::class, "showEditForm"])->middle
 Route::put('/post/{post}', [PostController::class, "actuallyUpdate"])->middleware('can:update,post');
 
 Route::get('/profile/{user:username}', [UserController::class, 'profile']);
+
+Route::get('admins-only', function() {
+    return "only admins!";
+})->middleware('can:visitAdminPages');
