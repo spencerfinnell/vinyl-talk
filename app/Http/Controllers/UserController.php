@@ -72,5 +72,16 @@ class UserController extends Controller
 
         $imgData = Image::make($request->file('avatar'))->fit(120, 120)->encode('jpg');
         Storage::put('public/avatars/' . $filename, $imgData);
+
+        $oldAvatar = $user->avatar;
+
+        $user->avatar = $filename;
+        $user->save();
+
+        if ($oldAvatar != '/fallback-avatar.jpg') {
+            Storage::delete(str_replace('/storage/', 'public/', $oldAvatar));
+        }
+
+        return back()->with("success", "Love the new avatar! Lookin' good.");
     }
 }

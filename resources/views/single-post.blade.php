@@ -16,7 +16,7 @@
     </div>
 
     <p class="text-muted small mb-4">
-        <a href="#"><img class="avatar-tiny" src="https://gravatar.com/avatar/3121363/a0c92ba8ba9b13cd74d9a3905de46fec=128" /></a>
+        <a href="#"><img class="avatar-tiny" src="{{ auth()->user()->avatar }}" /></a>
         Posted by <a href="#">{{ $post->user->username }}</a> on {{ $post->created_at->format('n/j/Y') }}
     </p>
 
