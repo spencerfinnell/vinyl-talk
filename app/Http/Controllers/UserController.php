@@ -55,4 +55,12 @@ class UserController extends Controller
             'postCount' => $user->posts()->count()
         ]);
     }
+
+    public function showAvatarForm() {
+        return view('avatar-form');
+    }
+
+    public function storeAvatar(Request $request) {
+        $request->file('avatar')->store('public/avatars');
+    }
 }
