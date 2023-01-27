@@ -12,16 +12,18 @@
                     <img class="avatar-tiny" src="{{ $user->avatar }}" />
                     <strong>{{ $user->username }}</strong> has made {{ $user->posts_count }} {{ Str::plural( 'post', $user->posts_count ) }}
                 </a>
-                @if(auth()->user()->id !== $user->id && !auth()->user()->isFollowing($user))
-                <form class="ml-auto d-inline" action="/create-follow/{{ $user->username }}" method="POST">
-                    @csrf
-                    <button class="btn btn-primary btn-sm">Follow <i class="fas fa-user-plus"></i></button>
-                </form>
-                @elseif(!auth()->user()->isFollowing($user))
-                <form class="ml-auto d-inline" action="/remove-follow/{{ $user->username }}" method="POST">
-                    @csrf
-                    <button class="btn btn-primary btn-sm">Unfollow <i class="fas fa-user-minus"></i></button>
-                </form>
+                @if(auth()->user()->id !== $user->id)
+                    @if(!auth()->user()->isFollowing($user))
+                    <form class="ml-auto d-inline" action="/create-follow/{{ $user->username }}" method="POST">
+                        @csrf
+                        <button class="btn btn-primary btn-sm">Follow <i class="fas fa-user-plus"></i></button>
+                    </form>
+                    @else
+                    <form class="ml-auto d-inline" action="/remove-follow/{{ $user->username }}" method="POST">
+                        @csrf
+                        <button class="btn btn-primary btn-sm">Unfollow <i class="fas fa-user-minus"></i></button>
+                    </form>
+                    @endif
                 @endif
             </div>
         @endforeach
