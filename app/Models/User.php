@@ -52,4 +52,14 @@ class User extends Authenticatable
     public function posts() {
         return $this->hasMany(Post::class, 'user_id');
     }
+
+    /**
+     * Determines if the current user is following the given user.
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function isFollowing( User $user ) {
+        return (bool) Follow::where('user_id', $this->id)->where('followeduser', $user->id)->count();
+    }
 }
